@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+	      #map {
+	        height: 300px; 
+	        width: 100%;
+	       }
+	        button {
+				font-size: 16px;
+				border-radius: 5px;
+                padding: 5px;
+                cursor:pointer;
+                padding-left:10px;
+                padding-right:10px;
+			}
+			input {
+				
+				height: 30px;
+				width: 200px;
+				font-size:12px;
+                background: #f1f1f1;
+                border: none;
+			}
+            #login {
+            	background-color: #993366;
+  				color: white;
+                border: none;
+            
+  			}	
+            #register {
+            background-color: #ffcc66;
+  			color: #000034;
+ 
+  			border: none;
+  			
+            }
+            #volunteer {
+             background-color: #000034;
+  			color: white;
+ 
+  			border: none;
+	    </style>
+	</head>
+	<body>
+		<div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+		<script src="./orgsignup.js"></script>
+		<h1 style="margin:0px">Register</h1>
+        <br>
+		<h4 style="margin:0px">Organization Email</h4>
+		<input type="text" id="email">
+		<h4 style="margin:0px;margin-top:10px">Organization Name</h4>
+		<input type="text" id="name">
+		<h4 style="margin:0px;margin-top:10px">Password</h4>
+		<input type="text" id="password">
+		<br></br>
+		<h4 style="font-size:20px;margin-bottom:0px;margin:0px;">Address</h4>
+		<p style="margin:0px;margin-bottom:10px" id ="address">Place a marker on the map to specify your location so we can match you with local volunteers!</p>
+		<div id = "map"></div>
+		<br>
+		<button id = "register">Register</button>
+        <br></br>
+		<button id = "login">Go to Login</button>
+		<button id = "volunteer">Signup as a Volunteer</button>
+		<script>
+			function initMap() {
+			  var map = new google.maps.Map(
+			      document.getElementById('map'), {zoom: 1, center: {lat: 0.0, lng: 0.0}});
+
+			  var marker;
+			  var infoWindow;
+			  var initial = true;
+		      map.addListener('click', function(mapsMouseEvent) {
+		      	  var location = mapsMouseEvent.latLng;
+				  var geocoder = new google.maps.Geocoder;
+  				  geocodeLatLng(geocoder, map, location, initial);
+  				  initial = false;
+		      });
+			}
+
+			function geocodeLatLng(geocoder, map, location, initial) {
+			  geocoder.geocode({'location': location}, function(results, status) {
+			    if (status === 'OK') {
+			      if (results[0]) {
+			        if (map.getZoom() < 9) {
+			        	map.setZoom(8);
+			        }
+			        if (!initial) {
+		      	  		marker.setPosition(location)
+		      	  		infoWindow.setContent(results[0].formatted_address);
+		      	  		infoWindow.open(map, marker);
+			      	} else {
+			      	  	initial = false;
+				        marker = new google.maps.Marker({
+						  position: location, 
+						  map: map
+						});
+						infoWindow = new google.maps.InfoWindow;
+						infoWindow.setContent(results[0].formatted_address);
+			        	infoWindow.open(map, marker);
+					}
+					localStorage.setItem("longitude", location.lng());
+					localStorage.setItem("latitude", location.lat());
+			      } else {
+			        window.alert('No results found');
+			      }
+			    } else {
+			      window.alert('Geocoder failed due to: ' + status);
+			    }
+			  });
+			}
+	    </script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeDHall7V8p_g6vvSIJBQNpX60rHFkCX0&callback=initMap" type="text/javascript">
+	    </script>
+	</body>
+</html>

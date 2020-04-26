@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+
+			button {
+				font-size: 16px;
+				border-radius: 5px;
+                padding: 5px;
+                cursor:pointer;
+                padding-left:10px;
+                padding-right:10px;
+			}
+			input {
+				
+				height: 30px;
+				width: 200px;
+				font-size:12px;
+                background: #f1f1f1;
+                border: none;
+			}
+            #login {
+            	background-color: #993366;
+  				color: white;
+                border: none;
+            
+  			}	
+            #volunteer {
+            background-color: #ffcc66;
+  			color: #000034;
+ 
+  			border: none;
+  			
+            }
+            #organization {
+             background-color: #000034;
+  			color: white;
+ 
+  			border: none;
+  			
+       
+  			
+		</style>
+	</head>
+	<body>
+		<div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="./login.js"></script>
+		<h1 style="margin:0px">Login</h1>
+        <br>
+		<h4 style="margin:0px">Email</h4>
+		<input type="text" id="email">
+		<h4 style="margin:0px;margin-top:10px">Password</h4>
+		<input type="text" id="password"><br></br>
+		
+		<button id = "login">Login</button>
+		<br></br>
+		<button id = "volunteer">Register as a Volunteer</button>
+		<button id = "organization">Register as an Organization</button>
+		<br></br>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+			#name {
+				border-radius: 5px;
+				height: 20px;
+				width: 200px;
+			}
+			textarea {
+				border-radius: 5px;
+				height: 60px;
+				width: 200px;
+				font-size:12px;
+			}
+			button {
+				font-size: 12px;
+				border-radius: 5px;
+			}
+			input {
+				border-radius: 5px;
+				height: 20px;
+				width: 200px;
+				font-size:12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+		<script src="./requestpage.js"></script>
+		<h1 id="name"></h1>
+		<br></br>
+		<h4 id="description"></h4>
+		<h4 id="organization"></h4>
+		<button id="profile">See Profile</button>
+		<ul id="descriptors" style="list-style-type: none; padding-left: 0px"></ul>
+		<br></br>
+		<ul id="signups" style="list-style-type: none; padding-left: 0px"></ul>
+		<button id = "signup">Signup</button>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+       /* Set the size of the div element that contains the map */
+       		button {
+				font-size: 16px;
+				border-radius: 5px;
+				background-color: #ffcc66;
+			}
+	      #map {
+	        height: 400px;  /* The height is 400 pixels */
+	        width: 100%;  /* The width is the width of the web page */
+	       }
+	    </style>
+	</head>
+	<body>
+		<div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+		<script src="./map.js"></script>
+		<h1 id = "text">Find Organizations on the Map</h1>
+		<div id = "map"></div>
+	    <!--Load the API from the specified URL
+	    * The async attribute allows the browser to render the page while the API loads
+	    * The key parameter will contain your own API key (which is not needed for this tutorial)
+	    * The callback parameter executes the initMap() function
+	    -->
+	    <h4>Or, find what you need with a <button id ="search">search 🔍</button></h4>
+	</body>
+</html>

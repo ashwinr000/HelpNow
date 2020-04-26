@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@800&family=Manrope:wght@300&display=swap" rel="stylesheet">
+<body>
+<style>
+body {
+	
+    height: 100%;
+}
+html {
+  height: 100%;
+}
+.Navigation {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+}
+
+ul {
+list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow:hidden;
+  background: linear-gradient(to right, #ffcc66 0%, #000099 125%);
+ 
+}  
+li {
+  float:right;
+    color:white;  
+   
+}
+.Nav {
+	display: block;
+	color:white;
+    text-decoration: none;
+    text-align:center;
+    padding: 10px;
+ 
+}
+#Title {
+	position: absolute;
+ 
+  left: 0;
+}
+.Nav:hover {
+	background-color:#000034;   
+}
+
+* {box-sizing: border-box}
+body {font-family: "Manrope", sans serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  height: 100%;
+  position: relative;
+  overflow:hidden;
+  
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding-left: 10px;
+  padding-right:10px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  border-radius: 20%;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 20%;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* Caption text */
+
+img {
+	opacity:0.6;
+}
+
+.img1 {
+  color: white;
+  font-size: 50px;
+  position: absolute;
+  top:20px;
+  width: 100%;
+  text-align: left;
+  font-family: 'Biryani', serif;
+  left:50px;
+}
+.img1reg {
+  display:block;
+  background-color:#ffcc80;
+  opacity:0.8;
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top:75px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin:10px;
+  border-radius: 15px;
+  text-align: left;
+  font-family: 'Manrope', serif;
+  left:45px;
+  text-decoration:none;
+}
+.img2find {
+  display:block;
+  background-color:#ffcc80;
+  opacity:0.8;
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top:455px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin:10px;
+  border-radius: 15px;
+  text-align: right;
+  font-family: 'Manrope', serif;
+  right:50px;
+  text-decoration:none;
+}  
+.img3find {
+  display:block;
+  background-color:#000034;
+  opacity:0.8;
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top:140px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin:10px;
+  border-radius: 15px;
+  text-align: right;
+  font-family: 'Manrope', serif;
+  right: 60px;
+  text-decoration:none;
+}  
+
+.img2 {
+  color: #000034;
+  font-size: 50px;
+  position: absolute;
+  top:350px;
+  width: 100%;
+  text-align: right;
+  font-family: 'Biryani', serif;
+  right:60px;
+}
+.img2-1 {
+  color: #000034;
+  font-size: 50px;
+  position: absolute;
+  top:400px;
+  width: 100%;
+  text-align: right;
+  font-family: 'Biryani', serif;
+  right:60px;
+}
+
+.img3 {
+  color: #ffcc80;
+  font-size: 50px;
+  position: absolute;
+  top:40px;
+  width: 100%;
+  text-align: right;
+  font-family: 'Biryani', serif;
+  right:70px;
+}
+
+
+.img3-2 {
+  color: #ffcc80;
+  font-size: 50px;
+  position: absolute;
+  top:80px;
+  width: 100%;
+  text-align: right;
+  font-family: 'Biryani', serif;
+  right:70px;
+ 
+}
+.img2find:hover{
+	opacity:1.0;
+}
+.img1reg:hover{
+	opacity:1.0;
+}
+.img3find:hover{
+	opacity:1.0;
+}
+</style>
+<div class="Navigation">
+  <ul>
+    <li onClick = "search()" class="Nav">Search</li>
+    <li onClick = "login()" class="Nav">Login</li>
+    <li onClick = "register()" class="Nav">Register</li>
+    <li onClick = "about()" class="Nav">About</li>
+    
+    <li id="Title" onClick = "welcome()" class="Nav">HelpNow</li>
+  </ul>
+</div>
+
+<div class="slideshow-container">
+	<div class="mySlides fade">
+ 	<img src="https://www.oregonfoodbank.org/wp-content/uploads/2015/08/full-group-volunteer.jpg" 	
+    style="height:100%;width:100%">
+  	<div class="img1">Make an account</div>
+    <div class="img1-1"><a class="img1reg" onClick = "register()">Register</a></div>
+    </div>
+	<div class="mySlides fade">
+ 	<img src="https://www.gannett-			cdn.com/presto/2020/03/27/USAT/ec9b9156-7681-4835-9da9-1aaf459ddc5d-XXX_TH_food_delivery_coronavirus_2020_250.JPG?width=660&height=554&fit=crop&format=pjpg&auto=webp" 
+    style="height:100%;width:100%">
+  	<div class="img2">Find volunteer</div>
+    <div class="img2-1">opportunities</div>
+    <a class="img2find" onClick = "search()">Search</a>
+	</div>
+    <div class="mySlides fade">
+ 	<img src="https://www.toledoblade.com/image/2020/03/23/1140x_a10-		7_cTC/CTY-quilt24-1.jpg" style="height:100%;width:100%">
+  	<div class="img3">Connect with</div>
+    <div class="img3-2">resources</div>
+    <a class="img3find" onClick = "login()">Make Requests</a>
+	</div>
+	</div>
+
+	<a class="prev" onclick="plusSlides(-1)">&#9664;</a>
+	<a class="next" onclick="plusSlides(1)">&#9654;</a>
+</div>
+<br>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+ 
+  slides[slideIndex-1].style.display = "block";  
+  
+}
+function welcome() {
+    window.location.href = "./welcome.html"
+  }
+function about() {
+    window.location.href = "./about.html"
+  }
+
+function login() {
+    window.location.href = "./login.html"
+  }
+
+function search() {
+  window.location.href = "./search.html"
+}
+function register() {
+  window.location.href = "./signup.html"
+}
+</script>
+</head>
+</html> 

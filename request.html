@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+			#name {
+				border-radius: 5px;
+				height: 20px;
+				width: 300px;
+                background-color:#dddddd;
+                border:none;
+			}
+			textarea {
+				border-radius: 5px;
+				height: 60px;
+				width: 300px;
+				font-size:12px;
+                border:none;
+                background-color:#dddddd;
+                padding: 5px;
+			}
+			button {
+				font-size: 16px;
+				border-radius: 5px;
+                padding: 5px;
+                cursor:pointer;
+
+			}
+			input {
+				
+				height: 30px;
+				width: 300px;
+				font-size:12px;
+                background: #f1f1f1;
+                border: none;
+                padding: 5px;
+
+			}
+            #add {
+            	background-color: #993366;
+  				color: white;
+                border: none;
+            
+  			}	
+            #post {
+            background-color: #ffcc66;
+  			color: #000034;
+ 
+  			border: none;
+  			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+		<script src="./request.js"></script>
+		<h1 style="margin:0px">Request</h1>
+        <br>
+		<h4 style="margin:0px">Name</h4>
+		<input type="text" id="name">
+		<h4 style="margin:0px;margin-top:10px">Description</h4>
+		<textarea type="text" id="description" rows="4" cols="30"></textarea>
+		<br></br>
+		<div id="descriptors"></div>
+		<button id="add">Add Descriptors</button>
+		<button id = "post">Post</button>
+	</body>
+</html>

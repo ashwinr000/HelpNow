@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@800&family=Manrope:wght@300&display=swap" rel="stylesheet">
+    
+<body>
+<style>
+body {
+	
+    height: 100%;
+}
+html {
+  height: 100%;
+}
+
+* {box-sizing: border-box}
+body {margin:0}
+
+
+
+
+.img1 {
+  color: #000034;
+  font-size: 50px;
+  position: absolute;
+  top:190px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Biryani', serif;
+  
+}
+.img1but {
+  display:block;
+  font-size: 30px;
+  top:250px;
+  position:absolute;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin:10px;
+  border-radius: 15px;
+  font-family: 'Manrope', sans-serif;
+  background: none;
+  border: 2px solid #ffcc80;
+  color: #000034;
+  
+  text-decoration:none;
+  
+  left:34%;
+  }
+.img1but-1 {
+  display:block;
+  font-size: 30px;
+  top:250px;
+  position:absolute;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin:10px;
+  border-radius: 15px;
+  font-family: 'Manrope', sans-serif;
+  background: none;
+  color: #000034;
+  background: none;
+  border: 2px solid #ffcc80;
+  text-decoration:none;
+  
+  left:44%;
+  }	
+  .img1but-2 {
+  display:block;
+  font-size: 30px;
+  top:250px;
+  position:absolute;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin:10px;
+  border-radius: 15px;
+  font-family: 'Manrope', sans-serif;
+  background: none;
+  color: #000034;
+  background: none;
+  border: 2px solid #ffcc80;
+  text-decoration:none;
+  
+  left:54%;
+  }
+  
+a:hover{
+	background-color: #ddd;
+}
+</style>
+
+    <div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+  	<div class="img1">Welcome!</div>
+    <div class="img1-1"><a class="img1but" onClick = "profile()">Profile</a></div>
+    <div class="img1-1"><a class="img1but-1" onClick = "search()">Search</a></div>
+    <div class="img1-1"><a class="img1but-2" onClick = "requests()" id = "request">Requests</a></div>
+    </div>
+
+    <script>
+      var x = document.getElementById("request")
+      if (localStorage.getItem("gtype") == "Organization") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+      function profile() {
+        window.location.href = "./profile.html";
+      }
+
+      function search() {
+        window.location.href = "./search.html";
+      }
+
+      function requests() {
+        window.location.href = "./request.html";
+      }
+    </script>
+
+</head>
+</html> 

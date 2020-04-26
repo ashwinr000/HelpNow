@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+			button {
+				font-size: 16px;
+				border-radius: 5px;
+				background-color: #ffcc66;
+			}
+			#input {
+				
+				
+				height: 30px;
+				width: 200px;
+				font-size:12px;
+                background: #f1f1f1;
+                border: none;
+                padding: 10px;
+			}
+            #Enter {
+	            background-color: #ffcc66;
+	  			color: #000034;
+	  			border: none;
+  			}
+  			label {
+  				margin-right: 20px;
+  			}
+		</style>
+	</head>
+	<body>
+		<div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+		<script src="./search.js"></script>
+
+		<h1 id="title">Search for Organizations</h1>
+		<input type="radio" id="orgs" name="type" value="orgs">
+		<label for="orgs">Organizations</label>
+		<input type="radio" id="reqs" name="type" value="reqs">
+		<label for="reqs">Requests</label>
+		<input type="radio" id="user" name="type" value="user">
+		<label for="users">Users</label>
+		<br></br>
+		<input type="search" id="input">
+		<button id="Enter">Search</button>
+		<h4 id="Error"><h4>
+		<ul id="Output" style="list-style-type: none; padding-left: 0px; overflow-y:scroll; max-height: 500px; width: 500px"></ul>
+		<h4>Or, find organizations on the <button id ="map">map 🌎</button></h4>
+
+	</body>
+</html>

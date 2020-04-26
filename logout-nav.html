@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@800&family=Manrope:wght@300&display=swap" rel="stylesheet">
+<body>
+<style>
+.Navigation {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+}
+
+ul {
+list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow:hidden;
+  background: linear-gradient(to right, #ffcc66 0%, #000099 125%);
+ 
+}  
+li {
+  float:right;
+    color:white;  
+   
+}
+.Nav {
+	display: block;
+	color:white;
+    text-decoration: none;
+    text-align:center;
+    padding: 10px;
+ 
+}
+#Title {
+	position: absolute;
+ 
+  left: 0;
+}
+.Nav:hover {
+	background-color:#000034;   
+}
+
+* {box-sizing: border-box}
+body {font-family: "Manrope", sans serif; margin:0}
+</style>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<div class="Navigation">
+  <ul>
+    <li onClick = "search()" class="Nav">Search</li>
+    <li onClick = "logout()" class="Nav">Logout</li>
+    <li  onClick = "about()" class="Nav">About</li>
+    <li onClick = "profile()" class="Nav">Profile</li>
+    <li id="Title" onClick = "welcome()" class="Nav">HelpNow</li>
+  </ul>
+</div>
+<script>
+  function about() {
+    window.parent.location.href = "./about.html"
+  }
+  function search() {
+    window.parent.location.href = "./search.html"
+  }
+  function profile() {
+    localStorage.setItem("selectedname", localStorage.getItem("name"));
+    localStorage.setItem("type", localStorage.getItem("gtype"))
+    window.parent.location.href = "./profile.html"
+  }
+
+
+  function welcome() {
+    window.parent.location.href = "./welcome.html"
+  }
+  
+  function logout() {
+      const firebaseConfig = {
+          apiKey: '<api-key>',
+          authDomain: '<app-name>.firebaseapp.com',
+          databaseURL: 'https://<app-name>.firebaseio.com',
+          projectId: '<project-id>',
+          storageBucket: '<app-name>.appspot.com',
+          messagingSenderId: '<messaging-sender-id>',
+          appId: '<app-id>'
+      };
+      firebase.initializeApp(firebaseConfig);
+      var db = firebase.firestore();
+      firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        console.log("Successful");
+        localStorage.clear();
+        window.parent.location.href = "./homepage.html"
+      }).catch(function(error) {
+        // An error happened.
+        console.log(error);
+      });
+  }
+</script>
+</body>
+</html>

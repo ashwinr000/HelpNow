@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+			
+			input {
+				height: 30px;
+				width: 230px;
+				font-size:12px;
+                background: #f1f1f1;
+                border:none;
+        padding-left: 10px;
+			}
+            input:focus {
+              	background-color: #ddd;
+  				outline: none;
+			}
+            #load {
+            	background-color: #993366;
+  				padding: 5px;
+  				color: white;
+                margin-left:7px;
+                font-size: 12px;
+				border-radius: 5px;
+            }
+            button {
+            	cursor: pointer;
+            }
+*{box-sizing: border-box;}
+
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  background: linear-gradient(to right, #ffcc66 0%, #000099 125%);;
+  color: white;
+  padding: 7px 16px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+  font-size: 25px;
+  border-radius: 5px;
+}
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 1px solid black;
+  z-index: 9;
+}
+/* The popup chat - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+  font-size: 12px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+#send {
+  background-color: #ffcc66;
+  color: #000034;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom:10px;
+  /*opacity: 0.8;*/
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: #000034;
+  padding: 5px;
+  color: white;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+	</head>
+	<body>
+    
+<button class="open-button" onclick="openForm()">Chat</button>
+
+<div class="chat-popup" id="myForm">
+  <div class="form-container">
+   <h1 style="font-size:25px;margin:0px;padding-bottom:15px">Chat</h1>
+    
+    <input placeholder="Recipient" type="text" id="person">
+    <button id = "load">Load</button><ul style="list-style-type: none; padding-left: 0px; overflow-y:scroll; max-height: 200px" id="chatbox"></ul>
+    <textarea type="text" id="chat" placeholder="Message" required></textarea>
+
+    <button id = "send">Send Message</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </div>
+</div>
+
+    
+    
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+		<script src="./chatapp.js"></script>
+		
+		
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+	</body>
+</html>

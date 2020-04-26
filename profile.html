@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+		<style>
+			* {
+				font-family: Manrope;
+			}
+		
+            table {
+  				
+  				width: 100%;
+			}
+
+			td, th {
+  				
+  				text-align: left;
+  				padding: 3px;
+			}
+            .label {
+            	background-color:#dddddd;
+                width:70px;
+                text-align:center;
+            }
+      button {
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #ffcc66;
+      }
+		</style>
+	</head>
+	<body>
+    <div style="height: 100px"><iframe src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="./profile.js"></script>
+
+        <h1>Profile</h1>
+        <h2 style="margin:0px">Info</h2>
+			<table>
+  				<tr>
+    				<th class="label">Name</th>
+    				<th><h4 style="margin:0px;display:inline" id="Name"></h4></th>
+  				</tr>
+                <tr>
+    				<th class="label">Email</th>
+    				<th><h4 style="margin:0px" id="Email"></h4></th>  					
+  				</tr>
+                <tr>
+                	<th class="label">User</th>
+                    <th><h4 style="margin:0px" id="Type"></h4></th>
+            </table>
+		<br>
+		<h2 style="margin:0px" id = "requestsTitle">Requests</h2>
+		<ul id="Requests" style="list-style-type: none; padding-left: 0px; overflow-y:scroll; max-height: 500px; width: 500px"></ul>
+		
+	</body>
+</html>
