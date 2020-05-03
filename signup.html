@@ -25,6 +25,9 @@
 				font-size:12px;
                 background: #f1f1f1;
                 border: none;
+                padding-left: 10px;
+                border-radius: 5px;
+
 			}
             #login {
             	background-color: #993366;
@@ -44,7 +47,16 @@
   			color: white;
  
   			border: none;
-  			
+  			}
+  			#content { 
+  				margin: auto;
+				width: 50%;
+				border: 3px solid black;
+				padding: 10px;
+				text-align: center;
+				border-radius: 10px;
+        		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  			}
        
   			
 
@@ -56,18 +68,25 @@
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
 		<script src="./signup.js"></script>
-		<h1 style="margin:0px">Register</h1>
-        <br>
-		<h4 style="margin:0px">Email</h4>
-		<input type="text" id="email">
-		<h4 style="margin:0px;margin-top:10px">Username</h4>
-		<input type="text" id="username">
-		<h4 style="margin:0px;margin-top:10px">Password</h4>
-		<input type="text" id="password">
-		<h4 style="font-size:20px;margin-bottom:0px">Address</h4>
-		<p style="margin:0px;margin-bottom:10px" id ="address">Place a marker on the map to specify your location so we can match you with local organizations!</p>
-		<div id="map"></div>
-		<br>
+		<div id = "content">
+			<h1 style="margin:0px">Register as a Volunteer</h1>
+	        <br>
+			<h4 style="margin:0px">Email</h4>
+			<input type="text" id="email">
+			<h4 style="margin:0px;margin-top:10px">Username</h4>
+			<input type="text" id="username">
+			<h4 style="margin:0px;margin-top:10px">Password</h4>
+			<input type="text" id="password">
+			<h4 style="font-size:20px;margin-bottom:0px">Address</h4>
+			<p style="margin:0px;margin-bottom:10px" id ="address">Place a marker on the map to specify your location so we can match you with local organizations!</p>
+			<div id="map"></div>
+			<br>
+			<p id="error" style="display:none; margin-top: 5px"></p>
+			<button id = "register">Register</button>
+			<br></br>
+			<button id = "login">Go to Login</button>
+			<button id = "organization">Register as an Organization</button>
+		</div>
 		<script>
 			function initMap() {
 			  var map = new google.maps.Map(
@@ -81,6 +100,7 @@
 				  var geocoder = new google.maps.Geocoder;
   				  geocodeLatLng(geocoder, map, location, initial);
   				  initial = false;
+  				  localStorage.setItem("setAddress", true);
 		      });
 			}
 
@@ -116,11 +136,6 @@
 			  });
 			}
 	    </script>
-	    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeDHall7V8p_g6vvSIJBQNpX60rHFkCX0&callback=initMap" type="text/javascript">
-	    </script>
-		<button id = "register">Register</button>
-		<br></br>
-		<button id = "login">Go to Login</button>
-		<button id = "organization">Register as an Organization</button>
+	    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeDHall7V8p_g6vvSIJBQNpX60rHFkCX0&callback=initMap" type="text/javascript"></script>
 	</body>
 </html>

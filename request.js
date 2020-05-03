@@ -26,7 +26,7 @@ function addDescriptor() {
 	var name = document.createElement("INPUT");   
 	name.type = "text";   
 	name.placeholder = "Descriptor Name" 
-	name.style = "border-radius: 5px; height: 30px; width: 300px; font-size: 16px; display:block; margin-top: 5px; margin-bottom: -10px"
+	name.style = "margin: 0 auto; border-radius: 5px; height: 30px; width: 300px; font-size: 16px; display:block; margin-top: 5px; margin-bottom: -10px"
 	var textnode = document.createTextNode("");     
 	name.appendChild(textnode); 
 

@@ -50,7 +50,7 @@
 }
 /* The popup chat - hidden by default */
 .chat-popup {
-  display: none;
+  display: block;
   position: fixed;
   bottom: 0;
   right: 15px;
@@ -61,7 +61,7 @@
 }
 /* The popup chat - hidden by default */
 .form-popup {
-  display: none;
+  display: block;
   position: fixed;
   bottom: 0;
   right: 15px;
@@ -76,20 +76,19 @@
   max-width: 300px;
   padding: 10px;
   background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;                 
 }
 
 /* Full-width textarea */
 .form-container textarea {
   width: 100%;
   padding: 10px;
+  
   border: none;
   background: #f1f1f1;
   resize: none;
   min-height: 200px;
   font-size: 12px;
-  border-radius: 10px;
 }
 
 /* When the textarea gets focus, do something */
@@ -99,13 +98,12 @@
 }
 
 /* Set a style for the submit/login button */
-#send {
+#login {
   background-color: #ffcc66;
   color: #000034;
   padding: 5px;
   border: none;
   cursor: pointer;
-  margin-top: 5px;
   margin-bottom:10px;
   /*opacity: 0.8;*/
   font-size: 12px;
@@ -125,33 +123,33 @@
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+#email {
+  margin-bottom: 10px;
+}
 </style>
 	</head>
 	<body>
     
-<button class="open-button" onclick="openForm()">Chat</button>
 
 <div class="chat-popup" id="myForm">
   <div class="form-container">
-   <h1 style="font-size:25px;margin:0px;padding-bottom:15px">Chat</h1>
+   <h1 style="font-size:25px;margin:0px;padding-bottom:15px">Login</h1>
     
-    <input placeholder="Recipient" type="text" id="person">
-    <button id = "load">Load</button>
-    <p id ="newchat" style="display:none">Chat created!</p>
-    <ul style="list-style-type: none; padding: 5px; overflow-y:scroll; max-height: 200px; margin: 10px 0 10px 0; width: 100%" id="chatbox"></ul>
-    <textarea type="text" id="chat" placeholder="Message" required></textarea>
+    <input placeholder="Email" type="text" id="email">
+    <input placeholder="Password" type="text" id="password">
 
-    <button id = "send">Send Message</button>
+    <br></br>
+    <button id = "login">Login</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    <p style = "display: none; margin-top: 0px; text-align: right" id="error"></p>
   </div>
 </div>
 
-    
-    
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-		<script src="./chatapp.js"></script>
+		<script src="./login.js"></script>
 		
 		
 <script>
@@ -160,6 +158,7 @@ function openForm() {
 }
 
 function closeForm() {
+  localStorage.setItem("loginpopup", "closed");
   document.getElementById("myForm").style.display = "none";
 }
 </script>

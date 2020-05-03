@@ -11,39 +11,19 @@ window.onload = function() {
 	firebase.initializeApp(firebaseConfig);
 
 	var submit = document.getElementById('login');
-	var volunteer = document.getElementById('volunteer');
-	var organization = document.getElementById('organization');
 	submit.onclick = function() {
         login();
     };
-    volunteer.onclick = function() {
-        volunteerSignup();
-    };
-    organization.onclick = function() {
-    	organizationSignup();
-    }
 }
 
-function organizationSignup() {
-	window.location.href = "./orgsignup.html";
-}
-
-
-function volunteerSignup() {
-	window.location.href = "./signup.html";
-}
 
 function login() {
   var passwordInput = document.getElementById("password").value
   var emailInput = document.getElementById("email").value
   var db = firebase.firestore();
-  firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput).catch(function(error) {
-	  // Handle Errors here.
-	  console.log(error.code);
-	  console.log(error.message);
-	  // ...
-	});
-    db.collection("Users").get().then(function(querySnapshot) {
+  firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput).then(function() {
+  	console.log("hello");
+  	db.collection("Users").get().then(function(querySnapshot) {
     	var found = false;
         querySnapshot.forEach(function(doc) {
         	if (doc.data().email == emailInput) {
@@ -57,7 +37,7 @@ function login() {
 	        	localStorage.setItem("longitude", glng);
 	        	found = true;
 	        	localStorage.setItem("gtype", "Volunteer");
-	        	window.location.href = "./welcome.html";
+	        	window.parent.location.href = "./welcome.html";
 	        }
         });
         if (!found) {
@@ -74,7 +54,7 @@ function login() {
 			        	localStorage.setItem("longitude", glng);
 			            found = true;
 			            localStorage.setItem("gtype", "Organization");
-			        	window.location.href = "./welcome.html"
+			        	window.parent.location.href = "./welcome.html"
 			        }
 		        });
 	    	})
@@ -83,4 +63,22 @@ function login() {
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });
+  }).catch(function(error) {
+	  // Handle Errors here.
+	  console.log(error.code);
+	  console.log(error.message);
+	  switch (error.code) {
+	  	case "auth/user-not-found":
+	  		document.getElementById("error").innerHTML = "No existing user";
+	  		break;
+	  	case "auth/wrong-password":
+	  		document.getElementById("error").innerHTML = "Wrong password";
+	  		break;
+	  	default:
+	  		break;
+	  }
+	  document.getElementById("error").style.display = "inline";
+	  // ...
+	});
+    
 }

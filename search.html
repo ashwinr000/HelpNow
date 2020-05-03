@@ -19,7 +19,8 @@
 				font-size:12px;
                 background: #f1f1f1;
                 border: none;
-                padding: 10px;
+                padding-left: 5px;
+                border-radius: 5px;
 			}
             #Enter {
 	            background-color: #ffcc66;
@@ -29,6 +30,16 @@
   			label {
   				margin-right: 20px;
   			}
+
+  			#content { 
+  				margin: auto;
+				width: 50%;
+				border: 3px solid black;
+				padding: 10px;
+				text-align: center;
+				border-radius: 10px;
+        		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  			}
 		</style>
 	</head>
 	<body>
@@ -37,20 +48,21 @@
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
 		<script src="./search.js"></script>
-
-		<h1 id="title">Search for Organizations</h1>
-		<input type="radio" id="orgs" name="type" value="orgs">
-		<label for="orgs">Organizations</label>
-		<input type="radio" id="reqs" name="type" value="reqs">
-		<label for="reqs">Requests</label>
-		<input type="radio" id="user" name="type" value="user">
-		<label for="users">Users</label>
-		<br></br>
-		<input type="search" id="input">
-		<button id="Enter">Search</button>
-		<h4 id="Error"><h4>
-		<ul id="Output" style="list-style-type: none; padding-left: 0px; overflow-y:scroll; max-height: 500px; width: 500px"></ul>
-		<h4>Or, find organizations on the <button id ="map">map 🌎</button></h4>
-
+		<div id = "content">
+			<h1 id="title">Search for Organizations</h1>
+			<input type="radio" id="orgs" name="type" value="orgs">
+			<label for="orgs">Organizations</label>
+			<input type="radio" id="reqs" name="type" value="reqs">
+			<label for="reqs">Requests</label>
+			<input type="radio" id="user" name="type" value="user">
+			<label for="users">Users</label>
+			<br></br>
+			<input type="search" id="input">
+			<button id="Enter" style = "margin-left: 5px">Search</button>
+			<h4 id="Error"><h4>
+			<table id="Output" style="overflow-y: auto; max-height: 300px; width: 70%; padding: 10px; border-spacing: 15px; margin: 0 auto"></table>
+			<h4>Or, find organizations on the <button id ="map">map 🌎</button></h4>
+		</div>
+		<iframe src="./chatapp.html" style="border:0px solid lightgrey; position: fixed; height: 600px; bottom: 10px; right: 0px; width: 350px;"></iframe>
 	</body>
 </html>

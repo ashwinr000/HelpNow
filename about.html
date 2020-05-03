@@ -6,6 +6,16 @@
 <style>
 body {
 font-family:"Manrope", sans serif;
+}
+#content {
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 </style>
 <body>
 	<div style="height: 100px"><iframe id = "frame" src="./logout-nav.html" style="border:0px solid lightgrey; position: fixed; top: 0px; left: 0px; width: 100%"></iframe></div>
@@ -17,11 +27,12 @@ font-family:"Manrope", sans serif;
 			document.getElementById("frame").src = "./logout-nav.html"
 		}
 	</script>
-
-<h1>About</h1>
-    <p>If you're someone looking to help your community by providing greatly-needed services/products during COVID-19, or you're a relief organization hoping to meet your needs, look no further. </p>
-    <p><strong>Prospective Volunteer:</strong> Simply make an account, and search up orgs or requests that have been made by others in your area. If you find something you can commit, chat with the org!</p>
-    <p><strong>Organization:</strong> Simply make an account, and create descriptive requests that detail what you need to succeed! Chat with volunteers who can fulfill your needs. </p>
+	<div id="content">
+		<h1>About</h1>
+	    <p>If you're someone looking to help your community by providing greatly-needed services/products during COVID-19, or you're a relief organization hoping to meet your needs, look no further. </p>
+	    <p><strong>Prospective Volunteer:</strong> Simply make an account, and search up orgs or requests that have been made by others in your area. If you find something you can commit, chat with the org!</p>
+	    <p><strong>Organization:</strong> Simply make an account, and create descriptive requests that detail what you need to succeed! Chat with volunteers who can fulfill your needs. </p>
+	</div>
 
 </body>
 

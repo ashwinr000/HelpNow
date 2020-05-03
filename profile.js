@@ -10,8 +10,11 @@ window.onload = function() {
 	};
 	firebase.initializeApp(firebaseConfig);
 
+	var title = document.getElementById("requestsTitle");
 	var db = firebase.firestore();
+	console.log(localStorage.getItem("selectedname"));
 	if (localStorage.getItem("type") == "Volunteer") {
+		title.innerHTML = "";
 		db.collection("Users").get().then(function(querySnapshot) {
 		    querySnapshot.forEach(function(doc) {
 		    	if (doc.data().name == localStorage.getItem("selectedname")) {
@@ -21,6 +24,48 @@ window.onload = function() {
 
 		        }
 		    });
+		    db.collection("Requests").get().then(function(querySnapshot) {
+			    querySnapshot.forEach(function(doc) {
+			    	var request = doc.data();
+			    	var ref = firebase.firestore().collection("Requests").doc(doc.id).collection("Entries");
+			    	ref.get().then(function(querySnapshot) {
+					    querySnapshot.forEach(function(doc) {
+					    	if (doc.data().name == localStorage.getItem("name")) {
+
+					        	var node = document.createElement("TR");              
+					        	node.style = "text-align: left; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";                            
+
+								var reqName;
+								reqName = document.createElement("P");
+								reqName.innerHTML = request.name;
+								reqName.style = "display: block; font-size: 18px"; 
+
+								var reqDes;
+								reqDes = document.createElement("P");
+								reqDes.innerHTML = request.description;
+								reqDes.style = "display: block";
+		     
+
+								var button = document.createElement("BUTTON");             
+								var buttonText = document.createTextNode("More Info");  
+								button.style = "margin-bottom: 15px";    
+								button.appendChild(buttonText);   
+								button.addEventListener('click', clickHandler, false);  
+
+								
+								node.appendChild(reqName); 
+								node.appendChild(reqDes);
+								node.appendChild(button); 
+
+
+								document.getElementById("Requests").appendChild(node);
+					        }
+			    		});
+			    
+	    			})
+			    });
+			    document.getElementById("requestsTitle").innerHTML = "Signups";
+	    	})
 	    })
 	} else {
 		db.collection("Organizations").get().then(function(querySnapshot) {
@@ -29,25 +74,54 @@ window.onload = function() {
 					document.getElementById("Name").innerHTML = localStorage.getItem("selectedname")
 					document.getElementById("Type").innerHTML = localStorage.getItem("type")
 		        	document.getElementById("Email").innerHTML = doc.data().email
+		        	var node = document.createElement("TR"); 
+		        	var label = document.createElement("TH");
+		        	var link = document.createElement("A");
+		        	label.style = "background-color:#dddddd; width:70px; text-align:center"
+		        	label.innerHTML = "Website";
+		        	var website = document.createElement("TH");
+		        	link.href = doc.data().website;
+		        	link.innerHTML = doc.data().website;
+		        	website.appendChild(link);
+
+		        	node.appendChild(label);
+					node.appendChild(website);
+					document.getElementById("info").appendChild(node);
+
 		        }
 		    });
 		    db.collection("Requests").get().then(function(querySnapshot) {
-		    	var hr = document.createElement("HR"); 
-				document.getElementById("Requests").appendChild(hr);
 			    querySnapshot.forEach(function(doc) {
 			    	if (doc.data().organization == localStorage.getItem("selectedname")) {
-			        	var node = document.createElement("LI");             
-						var textnode = document.createTextNode(doc.data().name + ": " + doc.data().description);     
-						node.appendChild(textnode);              
-						document.getElementById("Requests").appendChild(node); 
+			    		var request = doc.data();
+
+			        	var node = document.createElement("TR");              
+			        	node.style = "text-align: left; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";                            
+
+						var reqName;
+						reqName = document.createElement("P");
+						reqName.innerHTML = request.name;
+						reqName.style = "display: block; font-size: 18px"; 
+
+						var reqDes;
+						reqDes = document.createElement("P");
+						reqDes.innerHTML = request.description;
+						reqDes.style = "display: block";
+     
+
 						var button = document.createElement("BUTTON");             
-						var buttonText = document.createTextNode("GO");     
+						var buttonText = document.createTextNode("More Info");  
+						button.style = "margin-bottom: 15px";    
 						button.appendChild(buttonText);   
-						button.addEventListener('click', clickHandler, false);           
-						document.getElementById("Requests").appendChild(button)
-						button.style = "margin-bottom: 10px";  
-						var hr = document.createElement("HR"); 
-						document.getElementById("Requests").appendChild(hr);
+						button.addEventListener('click', clickHandler, false);  
+
+						
+						node.appendChild(reqName); 
+						node.appendChild(reqDes);
+						node.appendChild(button); 
+
+
+						document.getElementById("Requests").appendChild(node);
 			        }
 			    });
 			    document.getElementById("requestsTitle").innerHTML = "Requests";
@@ -55,22 +129,20 @@ window.onload = function() {
 	    })
 	}
 
-	var chat = document.getElementById('Chat');
-	chat.onclick = function() {
-        goToChat();
-    };
    
 }
 
 function clickHandler(event) {
 	var element = event.target;
-	var children = document.getElementById("Requests").childNodes
+	var children = document.getElementById("Requests").childNodes;
 	for (var i = 0; i < children.length; i++) {
-		if (children[i] == element) {
-			var text = children[i - 1].innerHTML
-			var split = text.split(":")[0];
-			localStorage.setItem("requestname", split);
-			goToRequest();
+		var grandchildren = children[i].childNodes;
+		for (var j = 0; j < grandchildren.length; j++) {
+			if (grandchildren[j] == element) {
+				var text = grandchildren[0].innerHTML
+				localStorage.setItem("requestname", text);
+				goToRequest();
+			}
 		}
 	}
 }

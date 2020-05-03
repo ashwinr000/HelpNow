@@ -13,7 +13,6 @@ window.onload = function() {
 	var send = document.getElementById('send');
 	var load = document.getElementById('load');
 
-
 	var chatId;
 	var chatData;
 
@@ -34,8 +33,22 @@ window.onload = function() {
 				        querySnapshot.forEach(function(doc) {
 				        	var user = doc.data().user
 				        	var message = doc.data().message
+
 				        	var node = document.createElement("LI");                
-							var textnode = document.createTextNode(user + ": " + message);     
+							var textnode = document.createElement("P");
+							textnode.innerHTML = message;
+							textnode.style = "font-size: 14px";
+							var textheight = textnode.style.height;
+							node.style = "padding: 5px; padding-left: 10px; padding-right: 10px;border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin: 0 0 10px 0";
+							if (user == localStorage.getItem("name")) {
+								node.style.textAlign = "right"
+								node.style.backgroundColor = "#ffcc66";
+							} else {
+								node.style.textAlign = "left"
+								node.style.backgroundColor = "#000066";
+								textnode.style.color = "white";
+							}
+							node.style.height = textheight;                       
 							node.appendChild(textnode);              
 							document.getElementById("chatbox").appendChild(node);  
 				        
@@ -50,6 +63,7 @@ window.onload = function() {
 				}).then(function(docRef) {
 					console.log("Document written with ID: ", docRef.id);
 					chatId = docRef.id
+					document.getElementById("newchat").style.display = "block";
 				}).catch(function(error) {
 				    console.error("Error adding document: ", error);
 				});
@@ -81,12 +95,23 @@ function sendMessage(id) {
 	.then(function(docRef) {
 	    console.log("Document written with ID: ", docRef.id);
 	    var node = document.createElement("LI");                
-		var textnode = document.createTextNode(localStorage.getItem("name") + ": " + document.getElementById("chat").value);     
+		var textnode = document.createElement("P");
+		textnode.innerHTML = document.getElementById("chat").value;
+		textnode.style = "font-size: 14px";
+		var textheight = textnode.style.height;
+		node.style = "padding: 5px; padding-left: 10px; padding-right: 10px; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin: 0 0 10px 0";
+		node.style.height = textheight
+		node.style.textAlign = "right"
+		node.style.backgroundColor = "#ffcc66";
+		console.log(textheight);                        
 		node.appendChild(textnode);              
 		document.getElementById("chatbox").appendChild(node); 
-		var chat = document.getElementById("chatbox");
+	
+
+		var chat = document.getElementById("chatbox"); 
 		chat.scrollTop = chat.scrollHeight
 		document.getElementById("chat").value = "" 
+
 	})
 	.catch(function(error) {
 	    console.error("Error adding document: ", error);

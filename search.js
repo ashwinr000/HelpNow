@@ -21,17 +21,13 @@ window.onload = function() {
 	    });
 	    db.collection("Users").get().then(function(querySnapshot) {
 		    querySnapshot.forEach(function(doc) {
-		    	if (doc.data().name != localStorage.getItem("name")) {
-		    		users.push(doc.data())
-		    	}
+		    	users.push(doc.data());
 		    });
 		    db.collection("Organizations").get().then(function(querySnapshot) {
 			    querySnapshot.forEach(function(doc) {
-			    	if (doc.data().name != localStorage.getItem("name")) {
-			    		organizations.push(doc.data())
-			    	}
+			    	organizations.push(doc.data());
 			    });
-		});
+			});
 		});
 	});
 
@@ -77,7 +73,13 @@ window.onload = function() {
 
 function goToMap() {
 	if (localStorage.getItem("name") === null) {
-		window.location.href = "./login.html";
+		var login = document.createElement("IFRAME");             
+	      login.style = "position: absolute; top: 50px; right: 0px; width: 280px; height: 210px;"
+	      login.frameBorder = "0"
+	      login.src = "./loginpopup.html"
+	      login.id = "popup";
+	      localStorage.setItem("loginpopup", "open");             
+	      document.body.appendChild(login);
 	} else {
 		window.location.href = "./maps.html";
 	}
@@ -91,17 +93,24 @@ function filterSearch(input, mode) {
 			var lower = input.toLowerCase()
 			//console.log(request.organization.indexOf(input));
 			if (user.name.toLowerCase().indexOf(lower) > -1) {
-				var node = document.createElement("LI");                
-				var textnode = document.createTextNode(user.name);     
-				node.appendChild(textnode);              
-				document.getElementById("Output").appendChild(node); 
+				var node = document.createElement("TR");    
+				node.style = "text-align: left; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); height: 120px;";                            
+ 
+				var desText;
+				desText = document.createElement("P");
+				desText.innerHTML = user.name;
+				desText.style = "font-size: 18px; display: block"; 
+ 
 				var button = document.createElement("BUTTON");             
-				var buttonText = document.createTextNode("Profile");     
+				var buttonText = document.createTextNode("Profile");
+				button.style = "margin: 0 auto; position: absolute; display: block; margin-top: 10px"; 
 				button.appendChild(buttonText);   
-				button.addEventListener('click', useHandler, false);           
-				document.getElementById("Output").appendChild(button);
-				var hr = document.createElement("HR"); 
-				document.getElementById("Output").appendChild(hr);	
+				button.addEventListener('click', useHandler, false); 
+
+				node.appendChild(desText); 
+				node.appendChild(button);
+
+				document.getElementById("Output").appendChild(node);
 				results = true;		
 			}
 		}
@@ -111,20 +120,37 @@ function filterSearch(input, mode) {
 			var lower = input.toLowerCase()
 			//console.log(request.organization.indexOf(input));
 			if ((request.description.toLowerCase().indexOf(lower) > -1) || (request.name.toLowerCase().indexOf(lower) > -1)) {
-				var node = document.createElement("LI");              
-				var textnode; 
+				var node = document.createElement("TR");  
+				node.style = "text-align: left; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); height: 200px;";                            
+				
+				var reqText;
+				reqText = document.createElement("P");
+				reqText.innerHTML = request.name;
+				reqText.style = "font-size: 18px; display: block";        
+
+				var desText;
+				desText = document.createElement("P");
+				desText.innerHTML = request.description;
+				desText.style = "display: block"; 
+
+				var orgText;
+				orgText = document.createElement("P");
+				orgText.innerHTML = request.organization;
+				orgText.style = "display: block";   
+
 				var button = document.createElement("BUTTON"); 
+				button.style = "margin-bottom: 15px"; 
 				var buttonText;       
-				buttonText = document.createTextNode("GO");
-				textnode = document.createTextNode(request.name + ": " + request.description + " - " + request.organization);       
-				node.appendChild(textnode);              
-				document.getElementById("Output").appendChild(node);
-				button.appendChild(buttonText);   
-				button.addEventListener('click', reqHandler, false);           
-				document.getElementById("Output").appendChild(button);
-				button.style = "margin-bottom: 10px";  
-				var hr = document.createElement("HR"); 
-				document.getElementById("Output").appendChild(hr);	
+				buttonText = document.createTextNode("More Info");
+				button.appendChild(buttonText); 
+				
+				node.appendChild(reqText);
+				node.appendChild(desText);
+				node.appendChild(orgText); 
+				node.appendChild(button); 
+
+				document.getElementById("Output").appendChild(node);  
+				button.addEventListener('click', reqHandler, false);            
 				results = true;		
 			}
 		}
@@ -134,20 +160,25 @@ function filterSearch(input, mode) {
 			var lower = input.toLowerCase()
 			//console.log(request.organization.indexOf(input));
 			if (organization.name.toLowerCase().indexOf(lower) > -1) {
-				var node = document.createElement("LI");                
-				var textnode; 
-				var button = document.createElement("BUTTON");  
+				var node = document.createElement("TR");
+				node.style = "text-align: left; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); height: 110px";                
+				
+				var orgText;
+				orgText = document.createElement("P");
+				orgText.innerHTML = organization.name;
+				orgText.style = "display: block"; 
+
+				var button = document.createElement("BUTTON"); 
+				button.style = "margin-top: 10px"; 
 				var buttonText;  
 				buttonText = document.createTextNode("Profile");
-				textnode = document.createTextNode(organization.name);   
-				node.appendChild(textnode);           
-				document.getElementById("Output").appendChild(node);
-				button.appendChild(buttonText);   
-				button.addEventListener('click', orgHandler, false);           
-				document.getElementById("Output").appendChild(button);	
+				button.appendChild(buttonText);  
+
+				node.appendChild(orgText);
+				node.appendChild(button);           
+				document.getElementById("Output").appendChild(node);  
+				button.addEventListener('click', orgHandler, false);           	
 				results = true;
-				var hr = document.createElement("HR"); 
-				document.getElementById("Output").appendChild(hr);	
 			}
 		}
 	}
@@ -162,24 +193,29 @@ function orgHandler(event) {
 	var element = event.target;
 	var children = document.getElementById("Output").childNodes
 	for (var i = 0; i < children.length; i++) {
-		if (children[i] == element) {
-			var text = children[i - 1].innerHTML
-			localStorage.setItem("selectedname", text);
-			localStorage.setItem("type", "Organization");
-			goToProfile();
+		var grandchildren = children[i].childNodes;
+		for (var j = 0; j < grandchildren.length; j++) {
+			if (grandchildren[j] == element) {
+				var text = grandchildren[0].innerHTML
+				localStorage.setItem("selectedname", text);
+				localStorage.setItem("type", "Organization");
+				goToProfile();
+			}
 		}
 	}
 }
 
 function reqHandler(event) {
 	var element = event.target;
-	var children = document.getElementById("Output").childNodes
+	var children = document.getElementById("Output").childNodes;
 	for (var i = 0; i < children.length; i++) {
-		if (children[i] == element) {
-			var text = children[i - 1].innerHTML
-			var split = text.split(":")[0];
-			localStorage.setItem("requestname", split);
-			goToRequest();
+		var grandchildren = children[i].childNodes;
+		for (var j = 0; j < grandchildren.length; j++) {
+			if (grandchildren[j] == element) {
+				var text = grandchildren[0].innerHTML
+				localStorage.setItem("requestname", text);
+				goToRequest();
+			}
 		}
 	}
 }
@@ -188,11 +224,14 @@ function useHandler(event) {
 	var element = event.target;
 	var children = document.getElementById("Output").childNodes
 	for (var i = 0; i < children.length; i++) {
-		if (children[i] == element) {
-			var text = children[i - 1].innerHTML
-			localStorage.setItem("selectedname", text);
-			localStorage.setItem("type", "Volunteer");
-			goToProfile();
+		var grandchildren = children[i].childNodes;
+		for (var j = 0; j < grandchildren.length; j++) {
+			if (element == grandchildren[j]) {
+				var text = grandchildren[0].innerHTML
+				localStorage.setItem("selectedname", text);
+				localStorage.setItem("type", "Volunteer");
+				goToProfile();
+			}
 		}
 	}
 }

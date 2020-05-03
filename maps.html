@@ -16,6 +16,15 @@
 	        height: 400px;  /* The height is 400 pixels */
 	        width: 100%;  /* The width is the width of the web page */
 	       }
+	       #content { 
+	        margin: auto;
+	        width: 50%;
+	        border: 3px solid black;
+	        padding: 10px;
+	        text-align: center;
+	        border-radius: 10px;
+        	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	      }
 	    </style>
 	</head>
 	<body>
@@ -24,13 +33,16 @@
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
 		<script src="./map.js"></script>
-		<h1 id = "text">Find Organizations on the Map</h1>
-		<div id = "map"></div>
-	    <!--Load the API from the specified URL
-	    * The async attribute allows the browser to render the page while the API loads
-	    * The key parameter will contain your own API key (which is not needed for this tutorial)
-	    * The callback parameter executes the initMap() function
-	    -->
-	    <h4>Or, find what you need with a <button id ="search">search 🔍</button></h4>
+		<div id = "content">
+			<h1 id = "text">Find Organizations on the Map</h1>
+			<div id = "map"></div>
+		    <!--Load the API from the specified URL
+		    * The async attribute allows the browser to render the page while the API loads
+		    * The key parameter will contain your own API key (which is not needed for this tutorial)
+		    * The callback parameter executes the initMap() function
+		    -->
+		    <h4>Or, find what you need with a <button id ="search">search 🔍</button></h4>
+		</div>
+		<iframe src="./chatapp.html" style="border:0px solid lightgrey; position: fixed; height: 600px; bottom: 10px; right: 0px; width: 350px;"></iframe>
 	</body>
 </html>

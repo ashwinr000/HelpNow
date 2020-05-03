@@ -219,12 +219,11 @@ img {
 </style>
 <div class="Navigation">
   <ul>
-    <li onClick = "search()" class="Nav">Search</li>
     <li onClick = "login()" class="Nav">Login</li>
     <li onClick = "register()" class="Nav">Register</li>
     <li onClick = "about()" class="Nav">About</li>
     
-    <li id="Title" onClick = "welcome()" class="Nav">HelpNow</li>
+    <li id="Title" onClick = "goToHome()" class="Nav">HelpNow</li>
   </ul>
 </div>
 
@@ -233,20 +232,20 @@ img {
  	<img src="https://www.oregonfoodbank.org/wp-content/uploads/2015/08/full-group-volunteer.jpg" 	
     style="height:100%;width:100%">
   	<div class="img1">Make an account</div>
-    <div class="img1-1"><a class="img1reg" onClick = "register()">Register</a></div>
+    <!-- <div class="img1-1"><a class="img1reg" onClick = "register()">Register</a></div> -->
     </div>
 	<div class="mySlides fade">
  	<img src="https://www.gannett-			cdn.com/presto/2020/03/27/USAT/ec9b9156-7681-4835-9da9-1aaf459ddc5d-XXX_TH_food_delivery_coronavirus_2020_250.JPG?width=660&height=554&fit=crop&format=pjpg&auto=webp" 
     style="height:100%;width:100%">
   	<div class="img2">Find volunteer</div>
     <div class="img2-1">opportunities</div>
-    <a class="img2find" onClick = "search()">Search</a>
+    <!-- <a class="img2find" onClick = "search()">Search</a> -->
 	</div>
     <div class="mySlides fade">
  	<img src="https://www.toledoblade.com/image/2020/03/23/1140x_a10-		7_cTC/CTY-quilt24-1.jpg" style="height:100%;width:100%">
   	<div class="img3">Connect with</div>
     <div class="img3-2">resources</div>
-    <a class="img3find" onClick = "login()">Make Requests</a>
+    <!-- <a class="img3find" onClick = "login()">Make Requests</a> -->
 	</div>
 	</div>
 
@@ -280,20 +279,31 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";  
   
 }
-function welcome() {
-    window.location.href = "./welcome.html"
+function goToHome() {
+    if (localStorage.getItem("name") == "null") {
+      window.parent.location.href = "./homepage.html";
+    } else {
+      window.parent.location.href = "./welcome.html";
+    }
   }
 function about() {
     window.location.href = "./about.html"
   }
 
 function login() {
-    window.location.href = "./login.html"
+  console.log(localStorage.getItem("loginpopup"));
+  var login = document.createElement("IFRAME");             
+  login.style = "position: absolute; top: 50px; right: 0px; width: 280px; height: 210px;"
+  login.frameBorder = "0"
+  login.src = "./loginpopup.html"
+  login.id = "popup";
+  localStorage.setItem("loginpopup", "open");             
+  document.body.appendChild(login);
+  if (localStorage.getItem("loginpopup") == null || localStorage.getItem("loginpopup") == "closed") {
+      
+    }
   }
 
-function search() {
-  window.location.href = "./search.html"
-}
 function register() {
   window.location.href = "./signup.html"
 }

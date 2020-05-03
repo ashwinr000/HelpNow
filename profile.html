@@ -27,6 +27,15 @@
         border-radius: 5px;
         background-color: #ffcc66;
       }
+      #content { 
+        margin: auto;
+        width: 50%;
+        border: 2px solid black;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
 		</style>
 	</head>
 	<body>
@@ -35,10 +44,10 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
     <script src="./profile.js"></script>
-
+      <div id = "content">
         <h1>Profile</h1>
         <h2 style="margin:0px">Info</h2>
-			<table>
+			<table style = "width: 300px; margin: 0 auto; padding: 10px" id = "info">
   				<tr>
     				<th class="label">Name</th>
     				<th><h4 style="margin:0px;display:inline" id="Name"></h4></th>
@@ -53,7 +62,9 @@
             </table>
 		<br>
 		<h2 style="margin:0px" id = "requestsTitle">Requests</h2>
-		<ul id="Requests" style="list-style-type: none; padding-left: 0px; overflow-y:scroll; max-height: 500px; width: 500px"></ul>
-		
+    <table id="Requests" style="overflow-y: auto; max-height: 300px; width: 70%; padding: 10px; border-spacing: 15px; margin: 0 auto"></table>
+
+		  </div>
+      <iframe src="./chatapp.html" style="border:0px solid lightgrey; position: fixed; height: 600px; bottom: 10px; right: 0px; width: 350px;"></iframe>
 	</body>
 </html>

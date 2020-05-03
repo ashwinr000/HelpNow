@@ -50,21 +50,26 @@ body {font-family: "Manrope", sans serif; margin:0}
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
 <div class="Navigation">
   <ul>
-    <li onClick = "search()" class="Nav">Search</li>
     <li onClick = "logout()" class="Nav">Logout</li>
-    <li  onClick = "about()" class="Nav">About</li>
+    <li onClick = "search()" class="Nav">Search</li>
+    <li onClick = "requests()" class="Nav" id = "orgs">Requests</li>
     <li onClick = "profile()" class="Nav">Profile</li>
     <li id="Title" onClick = "welcome()" class="Nav">HelpNow</li>
   </ul>
 </div>
 <script>
-  function about() {
-    window.parent.location.href = "./about.html"
+  if (localStorage.getItem("gtype") == "Volunteer") {
+    document.getElementById("orgs").style.display = "none";
   }
+
   function search() {
-    window.parent.location.href = "./search.html"
+    window.parent.location.href = "./maps.html"
+  }
+  function requests() {
+    window.parent.location.href = "./request.html"
   }
   function profile() {
+    console.log(localStorage.getItem("gtype"));
     localStorage.setItem("selectedname", localStorage.getItem("name"));
     localStorage.setItem("type", localStorage.getItem("gtype"))
     window.parent.location.href = "./profile.html"
@@ -90,7 +95,7 @@ body {font-family: "Manrope", sans serif; margin:0}
       firebase.auth().signOut().then(function() {
         // Sign-out successful.
         console.log("Successful");
-        localStorage.clear();
+        localStorage.setItem("name", null);
         window.parent.location.href = "./homepage.html"
       }).catch(function(error) {
         // An error happened.

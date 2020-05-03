@@ -47,13 +47,43 @@ body {font-family: "Manrope", sans serif; margin:0}
 </style>
 <div class="Navigation">
   <ul>
-    <li><a href="#Search" class="Nav">Search</a></li>
-    <li><a href="#Login" class="Nav">Login</a></li>
-    <li><a href="#Register" class="Nav">Register</a></li>
-    <li><a href="#about" class="Nav">About</a></li>
-    
-    <li id="Title"><a href="#Title" class="Nav">HelpNow</a></li>
+    <li><a onclick="goToLogin()" class="Nav">Login</a></li>
+    <li><a onclick="goToRegister()" class="Nav">Register</a></li>
+    <li><a onclick="goToAbout()" class="Nav">About</a></li>    
+    <li id="Title"><a onclick="goToHome()" class="Nav">HelpNow</a></li>
   </ul>
 </div>
+<script>
+
+  function goToLogin() {
+    if (localStorage.getItem("loginpopup") == null || localStorage.getItem("loginpopup") == "closed") {}
+      localStorage.setItem("loginpopup", "open");
+      var login = document.createElement("IFRAME");             
+      login.style = "position: absolute; top: 50px; right: 0px; width: 280px; height: 210px;"
+      login.frameBorder = "0"
+      login.src = "./loginpopup.html"
+      login.id = "popup";
+      localStorage.setItem("loginpopup", "open");             
+      parent.appendChild(login);
+
+  }
+  function goToRegister() {
+    window.parent.location.href = "./signup.html";
+  }
+  function goToAbout() {
+    window.parent.location.href = "./about.html";
+  }
+
+  function goToHome() {
+    console.log(localStorage.getItem("name"));
+    if (localStorage.getItem("name") == "null") {
+      window.parent.location.href = "./homepage.html";
+    } else {
+      window.parent.location.href = "./welcome.html";
+    }
+  }
+
+
+</script>
 </body>
 </html>
