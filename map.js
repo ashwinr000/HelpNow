@@ -1,6 +1,6 @@
 
 var script = document.createElement('script');
-script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDeDHall7V8p_g6vvSIJBQNpX60rHFkCX0&callback=initMap";
+script.src = "https://maps.googleapis.com/maps/api/js?key=************&callback=initMap";
 script.defer = true;
 script.async = true;
 
